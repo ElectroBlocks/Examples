@@ -218,3 +218,187 @@ while True:
   time.sleep(2) # Wait for the given/defined seconds.
 
 ```
+
+## LCD Screen
+
+### Project File
+
+[Project File](./lcd/project.xml)
+
+### Example Video
+
+![LCD Demo](./lcd/lcd_demo.gif)
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_lcd(4, 20, 63) # Configures the LCD Screen pins
+
+
+
+while True:
+  eb.lcd_clear() #clear screen
+  eb.lcd_print(0, 0, "Hello") # Print the first row text on the LCD screen
+  eb.lcd_print(1, 0, "  World") # Print the second row text on the LCD screen
+  eb.lcd_print(2, 0, " Test") # Print the third row text on the LCD screen
+  eb.lcd_print(3, 0, " .# moo #- ") # Print the fourth row text on the LCD screen
+  time.sleep(3) # Wait for 3 seconds
+  eb.lcd_clear() # clear screen
+  time.sleep(0.2) # Wait for the given/defined seconds.
+  eb.lcd_print(0, 0, "Hi") # Print a message on the LCD screen at specified row and column
+  for i in range(1, 18 + 1):
+    eb.lcd_scrollright()
+    time.sleep(0.2) # Wait for the given/defined seconds.
+  for i2 in range(1, 18 + 1):
+    eb.lcd_scrollleft()
+    time.sleep(0.2) # Wait for the given/defined seconds.
+  eb.lcd_clear() # Clear the LCD screen
+  eb.lcd_blink_curor(3, 9, True) # Turn on the blink.
+  time.sleep(1) # Wait for the given/defined seconds.
+  eb.lcd_blink_curor(3, 9, False) # Turn off the blink.
+  time.sleep(1) # Wait for the given/defined seconds.
+  eb.lcd_toggle_backlight(False) # Turn off the LCD backlight
+  time.sleep(1) # Wait for the given/defined seconds.
+  eb.lcd_toggle_backlight(True) # Turn on the LCD backlight
+  time.sleep(1) # Wait for the given/defined seconds.
+```
+
+### C Code
+
+```c
+#include <Wire.h>;  // Include the Wire library for I2C communication.
+#include <LiquidCrystal_I2C.h>;  // Include the LiquidCrystal_I2C library for controlling the LCD
+LiquidCrystal_I2C lcd(0X3F,4,20); // Create an LCD object with I2C address 0X3F, 4 rows, and 20 columns
+int simple_loop_variable = 0;
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   lcd.init(); // Initialize the LCD
+   lcd.backlight(); // Turn on the LCD backlight
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  lcd.clear(); // Clear LCD Screen
+  lcd.setCursor(0, 0); // Print a message on the LCD screen
+  lcd.print(String("Hello")); // Prints a message on LCD Screen.
+  lcd.setCursor(0, 1); // Print a message on the LCD screen
+  lcd.print(String("  World")); // Prints a message on LCD Screen.
+  lcd.setCursor(0, 2); // Print a message on the LCD screen
+  lcd.print(String(" Test")); // Prints a message on LCD Screen.
+  lcd.setCursor(0, 3); // Print a message on the LCD screen
+  lcd.print(String(" .# moo #- ")); // Prints a message on LCD Screen.
+  delay(3000); // Wait 3 seconds
+  lcd.clear(); // Clear LCD Screen
+
+  delay(200); // Wait for the given/defined milliseconds.
+  lcd.setCursor(0, 0); // Set position to print on the LCD screen
+  lcd.print(String("Hi")); // Print a message on the LCD screen
+  for (simple_loop_variable = 1; simple_loop_variable <= 18; simple_loop_variable += 1) {
+    lcd.scrollDisplayRight();
+    delay(200); // Wait for the given/defined milliseconds.
+  }
+  for (simple_loop_variable = 1; simple_loop_variable <= 18; simple_loop_variable += 1) {
+    lcd.scrollDisplayLeft();
+    delay(200); // Wait for the given/defined milliseconds.
+  }
+  lcd.clear(); // Clear LCD Screen.
+  lcd.setCursor(9, 3);
+  lcd.blink();
+  delay(1000); // Wait for the given/defined milliseconds.
+  lcd.setCursor(9, 3);
+  lcd.noBlink();
+  delay(1000); // Wait for the given/defined milliseconds.
+  lcd.noBacklight(); // Turn off backlight
+  delay(1000); // Wait for the given/defined milliseconds.
+  lcd.backlight(); // Turn on backlight
+  delay(1000); // Wait for the given/defined milliseconds.
+}
+```
+
+## LED 
+
+### Project File
+
+[Project File](./led/project.xml)
+
+### Example Video
+
+![LCD Demo](./led/led_demo.gif)
+
+### Python
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+i = 0
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.digital_write_config(8)
+eb.analog_write_config(9)
+
+
+while True:
+  eb.digital_write(8, 1) # Turns the led on
+  time.sleep(1) # Wait for the given/defined seconds.
+  eb.digital_write(8, 0) # Turns the led off
+  time.sleep(1) # Wait for the given/defined seconds.
+  for i in range(0, 101, 5):
+    eb.analog_write(9, i)
+    time.sleep(0.1) # Wait for the given/defined seconds.
+  for i in range(100, -1, -5):
+    eb.analog_write(9, i)
+    time.sleep(0.1) # Wait for the given/defined seconds.
+  time.sleep(1) # Wait for the given/defined seconds.
+```
+
+### C Code
+
+```c
+
+double i = 0;
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   pinMode(8, OUTPUT);  // Configures led pin as an output
+   pinMode(9, OUTPUT); // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  digitalWrite(8, HIGH); // Set defined pin to HIGH (turn it on).
+  delay(1000); // Wait for the given/defined milliseconds.
+  digitalWrite(8, LOW); // Set defined pin to LOW (turn it off).
+  delay(1000); // Wait for the given/defined milliseconds.
+  for (i = 0; i <= 100; i += 5) {
+    analogWrite(9, i);
+    delay(100); // Wait for the given/defined milliseconds.
+
+  }
+  for (i = 100; i >= 0; i -= 5) {
+    analogWrite(9, i);
+    delay(100); // Wait for the given/defined milliseconds.
+
+  }
+  delay(1000); // Wait for the given/defined milliseconds.
+}
+```
