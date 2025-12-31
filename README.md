@@ -78,7 +78,7 @@ void loop() {
 
 [Project File](./fast_led/project.xml)
 
-### Example of C code
+### [Example of C code](./fast_led/c_code.ino)
 
 ![C Code Example](./fast_led/c_fastled.gif)
 
@@ -165,7 +165,7 @@ void setFastLEDColor(int pos, struct RGB color) {
 
 ```
 
-### Example of Python Code
+### [Example of Python Code](./fast_led/python_code.py)
 
 Notice that it runs slower because of the loop where it has to send each command to set the individual colors from the laptop / computer running python.
 
