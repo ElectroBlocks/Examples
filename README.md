@@ -18,7 +18,8 @@ pip install -r requirements.txt
 
 ### Example Video
 
-![Digital Display](./digital_display/digitial_display.gif)
+<video src="./digital_display/digitial_display.mp4" controls>
+</video>
 
 ### [Python Code](./digital_display/python_code.py)
 
@@ -80,7 +81,8 @@ void loop() {
 
 ### [Example of C code](./fast_led/c_code.ino)
 
-![C Code Example](./fast_led/c_fastled.gif)
+<video src="./fast_led/c_fastled.gif" controls>
+</video>
 
 ```c
 struct RGB {
@@ -169,7 +171,8 @@ void setFastLEDColor(int pos, struct RGB color) {
 
 Notice that it runs slower because of the loop where it has to send each command to set the individual colors from the laptop / computer running python.
 
-![Python Neopixel Example](./fast_led/python_neopixels.gif)
+<video src="./fast_led/python_neopixels.mp4" controls>
+</video>
 
 ```python
 #Import ElectroBlocks library
@@ -410,8 +413,8 @@ void loop() {
 [Project File](./led_matrix/project.xml)
 
 ### Example Video
-
-![Lex Matrix Demo](./led_matrix/led_matrix.gif)
+<video src="./led_matrix/led_matrix.mp4" controls>
+</video>
 
 ### Python Code
 
@@ -577,7 +580,9 @@ I had to use the 12 V pin on the L298 board to get the DC motors spinning when p
 
 ### Example Video
 
-![LCD Demo](./motor/motor.gif)
+<video src="./motor/motor.mp4" controls>
+</video>
+
 
 ### Python Code
 
@@ -709,11 +714,9 @@ void loop() {
 
 ### Example Video
 
-![Example Passive Buzzer](./passive_buzzer/buzzer.png)
+<video src="./passive_buzzer/buzzer.mp4" controls>
+</video>
 
-<audio controls>
-  <source src="./passive_buzzer/buzzer.m4a" type="audio/m4a">
-</audio>
 
 ### Python Code
 
@@ -776,7 +779,7 @@ void loop() {
 
 ```
 
-## Passive Buzzer
+<!-- ## Passive Buzzer
 
 ### Project File
 
@@ -796,4 +799,4 @@ void loop() {
 
 ```c
 
-```
+``` -->
