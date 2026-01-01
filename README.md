@@ -794,6 +794,78 @@ void loop() {
 
 ```
 
+## Pins
+
+### Project File
+
+[Project File](./lcd/project.xml)
+
+### Example Video
+
+https://github.com/user-attachments/assets/70445b31-f742-423c-a6ef-b98c3ab96cc1
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+i = 0
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.digital_write_config(7)
+eb.analog_write_config(11)
+
+
+while True:
+  eb.digital_write(7, 1) # Turns the led on
+  time.sleep(1) # Wait for the given/defined seconds.
+  eb.digital_write(7, 0) # Turns the led off
+  time.sleep(1) # Wait for the given/defined seconds.
+  for i in range(5, 201, 5):
+    eb.analog_write(11, i)
+  for i in range(195, 4, -5):
+    eb.analog_write(11, i)
+  time.sleep(3) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+double i = 0;
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  digitalWrite(7, HIGH);
+  delay(1000); // Wait for the given/defined milliseconds.
+  digitalWrite(7, LOW);
+  delay(1000); // Wait for the given/defined milliseconds.
+  for (i = 5; i <= 200; i += 5) {
+    analogWrite(11, i);
+
+  }
+  for (i = 195; i >= 5; i -= 5) {
+    analogWrite(11, i);
+
+  }
+  delay(3000); // Wait for the given/defined milliseconds.
+}
+``` 
+
 <!-- ## Passive Buzzer
 
 ### Project File
