@@ -85,7 +85,9 @@ void loop() {
 ### [Example of C code](./fast_led/c_code.ino)
 
 
-https://github.com/user-attachments/assets/76c2bfd2-fc88-421b-8d2c-16ce5f4c4061
+
+https://github.com/user-attachments/assets/4c856863-d309-4f34-a4a2-009ae221f5a4
+
 
 
 
@@ -345,7 +347,10 @@ void loop() {
 
 ### Example Video
 
-https://github.com/user-attachments/assets/b2722118-b5fa-4810-9ded-c28b24c7974b
+
+
+https://github.com/user-attachments/assets/ff971f25-4253-4c46-89c5-a82e231a8503
+
 
 
 ### Python
