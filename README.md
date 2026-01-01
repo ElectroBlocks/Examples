@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 ### Example Video
 
-<video src="./digital_display/digitial_display.mp4" controls>
+<video src="https://storage.googleapis.com/electroblocks/examples/digitial_display.mp4" controls>
 </video>
 
 ### [Python Code](./digital_display/python_code.py)
