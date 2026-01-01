@@ -975,6 +975,85 @@ void setLedColor(RGB color) {
 
 ``` 
 
+## Servos
+
+### Project File
+
+[Project File](./servos/project.xml)
+
+### Example Video
+
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+i = 0
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_servo(8) # Configures the servo motor on pin 8
+eb.config_servo(7) # Configures the servo motor on pin 7
+
+
+
+while True:
+  for i in range(0, 91, 5):
+    eb.move_servo(8, i) # Rotate servo position to i degrees
+    eb.move_servo(7, (180 - i)) # Rotate servo position to (180 - i) degrees
+    time.sleep(0.05) # Wait for the given/defined seconds.
+  for i in range(90, -1, -5):
+    eb.move_servo(8, i) # Rotate servo position to i degrees
+    eb.move_servo(7, (180 - i)) # Rotate servo position to (180 - i) degrees
+    time.sleep(0.05) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+#include <Servo.h> // Includes the Servo library for controlling servo motors
+Servo servo_8; // Creates a servo object
+Servo servo_7; // Creates a servo object
+
+double i = 0;
+
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   servo_8.attach(8); // Attaches the servo motor to defined pin
+   servo_7.attach(7); // Attaches the servo motor to defined pin
+  servo_8.write(0); // Rotate servo position to 0 degrees
+  servo_7.write(180); // Rotate servo position to 180 degrees
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  for (i = 0; i <= 90; i += 5) {
+    servo_8.write(i); // Rotate servo position to i degrees
+    servo_7.write((180 - i)); // Rotate servo position to (180 - i) degrees
+    delay(50); // Wait for the given/defined milliseconds.
+
+  }
+  for (i = 90; i >= 0; i -= 5) {
+    servo_8.write(i); // Rotate servo position to i degrees
+    servo_7.write((180 - i)); // Rotate servo position to (180 - i) degrees
+    delay(50); // Wait for the given/defined milliseconds.
+
+  }
+}
+
+``` 
+
 <!-- ## Passive Buzzer
 
 ### Project File
