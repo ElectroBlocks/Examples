@@ -345,6 +345,7 @@ void loop() {
 
 ### Example Video
 
+https://github.com/user-attachments/assets/b2722118-b5fa-4810-9ded-c28b24c7974b
 
 
 ### Python
@@ -796,7 +797,11 @@ void loop() {
 
 ### Example Video
 
-![LCD Demo](./lcd/lcd_demo.gif)
+
+
+https://github.com/user-attachments/assets/91b9df44-50de-44a2-9eca-ee7998a3fd92
+
+
 
 ### Python Code
 
