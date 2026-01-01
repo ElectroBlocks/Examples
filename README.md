@@ -802,8 +802,8 @@ void loop() {
 
 ### Example Video
 
-https://github.com/user-attachments/assets/70445b31-f742-423c-a6ef-b98c3ab96cc1
 
+https://github.com/user-attachments/assets/016d2ddd-47cb-41a1-bd28-9f4f5c2958d9
 
 ### Python Code
 
@@ -828,17 +828,19 @@ while True:
   time.sleep(1) # Wait for the given/defined seconds.
   eb.digital_write(7, 0) # Turns the led off
   time.sleep(1) # Wait for the given/defined seconds.
-  for i in range(5, 201, 5):
+  for i in range(0, 201, 5):
     eb.analog_write(11, i)
-  for i in range(195, 4, -5):
+    time.sleep(0.05) # Wait for the given/defined seconds.
+  for i in range(200, -1, -5):
     eb.analog_write(11, i)
-  time.sleep(3) # Wait for the given/defined seconds.
-
+    time.sleep(0.05) # Wait for the given/defined seconds.
+  time.sleep(5) # Wait for the given/defined seconds.
 ```
 
 ### C Code
 
 ```c
+
 double i = 0;
 
 
@@ -854,16 +856,19 @@ void loop() {
   delay(1000); // Wait for the given/defined milliseconds.
   digitalWrite(7, LOW);
   delay(1000); // Wait for the given/defined milliseconds.
-  for (i = 5; i <= 200; i += 5) {
+  for (i = 0; i <= 200; i += 5) {
     analogWrite(11, i);
+    delay(50); // Wait for the given/defined milliseconds.
 
   }
-  for (i = 195; i >= 5; i -= 5) {
+  for (i = 200; i >= 0; i -= 5) {
     analogWrite(11, i);
+    delay(50); // Wait for the given/defined milliseconds.
 
   }
-  delay(3000); // Wait for the given/defined milliseconds.
+  delay(5000); // Wait for the given/defined milliseconds.
 }
+
 ``` 
 
 <!-- ## Passive Buzzer
@@ -876,7 +881,7 @@ void loop() {
 
 
 
-https://github.com/user-attachments/assets/91b9df44-50de-44a2-9eca-ee7998a3fd92
+
 
 
 
