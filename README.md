@@ -1,6 +1,6 @@
 # ElectroBlocks Examples
 
-This repo is a list of ElectroBlocks Component Examples in Python and C.
+This repo lists ElectroBlocks Component Examples in Python and C. Note that most demo videos are played at double speed to reduce video size.
 
 ## Setup
 
