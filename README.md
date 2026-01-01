@@ -981,11 +981,14 @@ void setLedColor(RGB color) {
 
 [Project File](./servos/project.xml)
 
-### Example Video
-
-
 
 ### Python Code
+
+
+
+https://github.com/user-attachments/assets/ffb410b0-3327-47d7-863c-24e553f8fe7a
+
+Notice that the Python code is a bit slower than the C code because of the commands and processing.
 
 ```python
 #Import ElectroBlocks library
@@ -1017,6 +1020,12 @@ while True:
 ```
 
 ### C Code
+
+
+
+https://github.com/user-attachments/assets/a5b9fef6-32c5-4466-b96a-ee39ba60c989
+
+
 
 ```c
 #include <Servo.h> // Includes the Servo library for controlling servo motors
