@@ -240,7 +240,7 @@ while True:
 
 ### Example Video
 
-![LCD Demo](./lcd/lcd_demo.gif)
+https://github.com/user-attachments/assets/3d1fc947-bccf-4f91-ba3f-5d7da4bc3cf9
 
 ### Python Code
 
