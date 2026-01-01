@@ -847,6 +847,8 @@ double i = 0;
 
 // Initialise the program settings and configurations
 void setup() {
+   pinMode(7, OUTPUT);  // Configures led pin as an output
+   pinMode(11, OUTPUT);  // Configures led pin as an output
 
 }
 
