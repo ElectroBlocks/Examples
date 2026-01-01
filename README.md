@@ -883,6 +883,11 @@ void loop() {
 ### Example Video
 
 
+
+https://github.com/user-attachments/assets/767ca9be-00a6-4881-8268-7f092ba77d0c
+
+
+
 ### Python Code
 
 ```python
@@ -977,10 +982,6 @@ void setLedColor(RGB color) {
 [Project File](./lcd/project.xml)
 
 ### Example Video
-
-
-
-
 
 
 
