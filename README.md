@@ -18,8 +18,11 @@ pip install -r requirements.txt
 
 ### Example Video
 
-<video src="https://storage.googleapis.com/electroblocks/examples/digitial_display.mp4" controls>
-</video>
+
+
+https://github.com/user-attachments/assets/40729812-0221-49cc-a67f-b0155674e6fd
+
+
 
 ### [Python Code](./digital_display/python_code.py)
 
@@ -81,8 +84,10 @@ void loop() {
 
 ### [Example of C code](./fast_led/c_code.ino)
 
-<video src="./fast_led/c_fastled.gif" controls>
-</video>
+
+https://github.com/user-attachments/assets/76c2bfd2-fc88-421b-8d2c-16ce5f4c4061
+
+
 
 ```c
 struct RGB {
@@ -171,8 +176,11 @@ void setFastLEDColor(int pos, struct RGB color) {
 
 Notice that it runs slower because of the loop where it has to send each command to set the individual colors from the laptop / computer running python.
 
-<video src="./fast_led/python_neopixels.mp4" controls>
-</video>
+
+
+https://github.com/user-attachments/assets/dbdbd262-50ef-48df-8a1a-cdb2238203cb
+
+
 
 ```python
 #Import ElectroBlocks library
@@ -337,7 +345,7 @@ void loop() {
 
 ### Example Video
 
-![LCD Demo](./led/led_demo.gif)
+
 
 ### Python
 
@@ -413,8 +421,9 @@ void loop() {
 [Project File](./led_matrix/project.xml)
 
 ### Example Video
-<video src="./led_matrix/led_matrix.mp4" controls>
-</video>
+
+https://github.com/user-attachments/assets/a511b010-8810-481a-afff-93e84df132ff
+
 
 ### Python Code
 
@@ -580,9 +589,7 @@ I had to use the 12 V pin on the L298 board to get the DC motors spinning when p
 
 ### Example Video
 
-<video src="./motor/motor.mp4" controls>
-</video>
-
+https://github.com/user-attachments/assets/3a1d5325-4b83-4938-b32c-44cee96d864b
 
 ### Python Code
 
@@ -714,8 +721,10 @@ void loop() {
 
 ### Example Video
 
-<video src="./passive_buzzer/buzzer.mp4" controls>
-</video>
+
+
+https://github.com/user-attachments/assets/89f648c7-3db4-43f5-9479-2ce747ef56e5
+
 
 
 ### Python Code
