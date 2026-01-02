@@ -1126,6 +1126,57 @@ void loop() {
 
 ```
 
+## Button
+
+### Project File
+
+[Project File](./button/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_button(7) # Set up button for pin 7.
+eb.digital_write_config(13)
+
+
+while True:
+  if not eb.is_button_pressed(7):
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+
+```
+
+### C Code
+
+```c
+
+// Initialise the program settings and configurations
+void setup() {
+   // button pin uses internal pull-up resistor.  LOW mean on and HIGH means off.
+   pinMode(7, INPUT_PULLUP);
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if (!(digitalRead(7) == LOW)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+}
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
@@ -1133,10 +1184,6 @@ void loop() {
 [Project File](./lcd/project.xml)
 
 ### Example Video
-
-
-
-
 
 
 ### Python Code
