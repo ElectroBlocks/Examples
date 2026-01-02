@@ -1126,6 +1126,57 @@ void loop() {
 
 ```
 
+## Analog Read
+
+### Project File
+
+[Project File](./analog_read/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_analog_read(A0) # Set up analog read for pin A0.
+eb.digital_write_config(13)
+
+
+
+while True:
+  if (eb.analog_read(A0) > 100):
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+
+```
+
+### C Code
+
+```c
+// Initialise the program settings and configurations
+void setup() {
+   pinMode(A0, INPUT); // Configures defined pin as an input
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if (((double)analogRead(A0) > 100)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+}
+
+``` 
+
 ## Button
 
 ### Project File
