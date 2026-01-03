@@ -1234,6 +1234,301 @@ void loop() {
 }
 ```
 
+## Digital Sensor
+
+### Project File
+
+[Project File](./digital_sensor/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_digital_read(7) # Set up digital read for pin 7.
+eb.config_digital_read(8) # Set up digital read for pin 8.
+eb.digital_write_config(3)
+eb.digital_write_config(9)
+
+
+
+while True:
+  if eb.digital_read(8) or eb.digital_read(7):
+    eb.digital_write(3, 1) # Turns the led on
+  else:
+    eb.digital_write(3, 0) # Turns the led off
+
+  if eb.digital_read(8) and eb.digital_read(7):
+    eb.digital_write(9, 1) # Turns the led on
+  else:
+    eb.digital_write(9, 0) # Turns the led off
+
+  time.sleep(0.2) # Wait for the given/defined seconds.
+```
+
+### C Code
+
+```c
+// Initialise the program settings and configurations
+void setup() {
+   pinMode(7, INPUT); // Configures defined pin as an input
+   pinMode(8, INPUT); // Configures defined pin as an input
+   pinMode(3, OUTPUT);  // Configures led pin as an output
+   pinMode(9, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if (digitalRead(8) || digitalRead(7)) {
+    digitalWrite(3, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(3, LOW); // Set defined pin to LOW (turn it off).
+  }
+  if (digitalRead(8) && digitalRead(7)) {
+    digitalWrite(9, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(9, LOW); // Set defined pin to LOW (turn it off).
+  }
+  delay(200); // Wait for the given/defined milliseconds.
+}
+
+```
+
+## IR Remote
+
+### Project File
+
+[Project File](./ir_remote/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_ir_remote(2) # IR Remote Config
+eb.digital_write_config(8)
+eb.digital_write_config(7)
+
+
+
+while True:
+  if eb.ir_remote_has_sensed_code():
+    if (eb.ir_remote_get_code() == 70):
+      eb.digital_write(8, 1) # Turns the led on
+
+    if (eb.ir_remote_get_code() == 69):
+      eb.digital_write(7, 1) # Turns the led on
+
+
+  time.sleep(1) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+#include <IRremote.hpp> // Include the IRremote library for infrared communication
+bool developer_ir_remote_found = false; // whether ir remote was pressed
+int developer_ir_remote_command = -1; // the button pressed by the ir remote
+
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   IrReceiver.begin(2, true); //
+   pinMode(8, OUTPUT);  // Configures led pin as an output
+   pinMode(7, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if (developer_ir_remote_found) {
+    if ((developer_ir_remote_command == 70)) {
+      digitalWrite(8, HIGH); // Set defined pin to HIGH (turn it on).
+    }
+    if ((developer_ir_remote_command == 69)) {
+      digitalWrite(7, HIGH); // Set defined pin to HIGH (turn it on).
+    }
+  }
+  delay(1000); // Wait for the given/defined milliseconds.
+  irRemoteLoopScan(); // Checks for then ir loop scan.
+}
+
+void irRemoteLoopScan() {
+  if (!IrReceiver.decode()) {
+    developer_ir_remote_found = false;
+    developer_ir_remote_command = -1;
+    IrReceiver.resume();
+    return;
+  }
+
+  // Short-circuit noisy/overflow frames
+  if (IrReceiver.decodedIRData.flags & IRDATA_FLAGS_WAS_OVERFLOW) {
+    // Too long/garbled signal, skip
+    IrReceiver.resume();
+    developer_ir_remote_found = false;
+    developer_ir_remote_command = -1;
+    return;
+  }
+
+  // Ignore repeat frames (user holding the button)
+  if (IrReceiver.decodedIRData.flags & IRDATA_FLAGS_IS_REPEAT) {
+    IrReceiver.resume();
+    developer_ir_remote_found = false;
+    developer_ir_remote_command = -1;
+    return;
+  }
+
+  developer_ir_remote_found = true;
+  developer_ir_remote_command = IrReceiver.decodedIRData.command;
+  IrReceiver.resume();
+}
+
+``` 
+
+## Joystick
+
+### Project File
+
+[Project File](./joystick/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_joystick("A1", "A3", 9) # Configures the joystick
+eb.digital_write_config(7)
+eb.digital_write_config(8)
+eb.digital_write_config(13)
+
+
+
+while True:
+  if eb.is_joystick_button_pressed():
+    eb.digital_write(7, 1) # Turns the led on
+  else:
+    eb.digital_write(7, 0) # Turns the led off
+
+  if (eb.joystick_angle() < 100):
+    eb.digital_write(8, 0) # Turns the led off
+
+  if (eb.joystick_angle() > 100):
+    eb.digital_write(8, 1) # Turns the led on
+
+  if eb.is_joystick_engaged():
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+
+```
+
+### C Code
+
+```c
+
+#include <math.h>
+
+#define Y_PIN A3
+#define X_PIN A1
+#define SW_PIN 9
+
+boolean internal_variable_isJoystickButtonPressed = false;
+boolean internal_variable_isJoyStickEngaged = false;
+int internal_variable_degrees = 0;
+
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+
+    pinMode(SW_PIN, INPUT);
+    pinMode(Y_PIN, INPUT);
+    pinMode(X_PIN, INPUT);
+    digitalWrite(SW_PIN, HIGH);
+     pinMode(7, OUTPUT);  // Configures led pin as an output
+   pinMode(8, OUTPUT);  // Configures led pin as an output
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if (internal_variable_isJoystickButtonPressed) {
+    digitalWrite(7, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(7, LOW); // Set defined pin to LOW (turn it off).
+  }
+  if ((internal_variable_degrees < 100)) {
+    digitalWrite(8, LOW); // Set defined pin to LOW (turn it off).
+  }
+  if ((internal_variable_degrees > 100)) {
+    digitalWrite(8, HIGH); // Set defined pin to HIGH (turn it on).
+  }
+  if (internal_variable_isJoyStickEngaged) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+	setJoyStickValues();
+}
+
+void setJoyStickValues() {
+  // https://medium.com/@melaniechow/using-a-joystick-sensor-on-an-arduino-3498d7399464
+  // This function was inspired by this Article
+  int y = (analogRead(Y_PIN) * 4.9);
+  delay(50); // small pause needed between reading
+  int x = (analogRead(X_PIN) * 4.9 );
+  delay(50);
+
+  x = (x - 2457);
+  y = (y - 2541);
+
+  double val = atan2(y, x) * 180/3.14159265358979;
+
+  if (val < 0) {
+    val += 360;
+  }
+
+  //convert to a double
+  double new_x = x / 100.0;
+  double new_y = y / 100.0;
+  double distance = sqrt((new_x * new_x) + (new_y * new_y));
+
+  internal_variable_degrees = distance > 15 ? val : 0;
+  internal_variable_isJoyStickEngaged = distance > 15;
+  internal_variable_isJoystickButtonPressed = digitalRead(SW_PIN) == LOW;
+
+}
+
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
