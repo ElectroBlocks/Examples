@@ -1529,6 +1529,250 @@ void setJoyStickValues() {
 
 ```
 
+## Motion Sensor
+
+### Project File
+
+[Project File](./motion/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_motion_sensor(10, 11) # Setup Motion Sensor. EchoPin = 10 TrigPin = 11
+eb.digital_write_config(13)
+
+
+
+while True:
+  if (eb.motion_distance_cm() < (2 * 3)):
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+```
+
+### C Code
+
+```c
+// Initialise the program settings and configurations
+void setup() {
+   pinMode(10, INPUT); // Set pin 10 as input for the echo signal
+   pinMode(11, OUTPUT); // Set pin 11 as output for the trigger signal
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if ((ultraSonicDistance() < (2 * 3))) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+}
+
+// This is function to Trigger the ultrasonic sensor and measure the distance
+double ultraSonicDistance() {
+  digitalWrite(11, LOW); // Set the trigger pin to low
+  delayMicroseconds(2); // Wait for 2 microseconds
+  digitalWrite(11, HIGH); // set the trigger pin to high
+  delayMicroseconds(10); // Wait for 10 microseconds
+  digitalWrite(11, LOW); // Set the trigger pin to low
+  long microseconds = pulseIn(10, HIGH); // Measure the time for the echo to retur
+  return (double)(microseconds / 29 / 2);  // Convert the time to distance in cm
+}
+
+```
+
+## Temp Sensor
+
+### Project File
+
+[Project File](./temp/project.xml)
+
+### Example Pictures
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_dht_temp(2)
+eb.digital_write_config(13)
+
+
+
+while True:
+  print(f"{eb.dht_temp_celcius():.2f}")
+  print(f"{eb.dht_temp_humidity():.2f}")
+  if (eb.dht_temp_celcius() > 15) or (eb.dht_temp_humidity() > 50):
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+boolean stopDebugging = false;
+#define DHTPIN 2 // Define pin  for the DHT sensor data
+#define DHTTYPE DHT11 // Define the type of DHT sensor.
+#include <DHT.h>; // Include the DHT library for temperature and humidity sensor
+DHT dht(DHTPIN, DHTTYPE); // Initialize the DHT sensor using the defined pin and type
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   dht.begin(); // Initialize the DHT sensor
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  Serial.println((double2string((double)dht.readTemperature(), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string((double)dht.readHumidity(), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  if (((double)dht.readTemperature() > 20) && ((double)dht.readHumidity() > 50)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+  delay(200); // Wait for the given/defined milliseconds.
+}
+
+ String double2string(double n, int ndec) {
+		 String r = "";
+		 int v = n;
+		 r += v;     // whole number part
+		 r += '.';   // decimal point
+		 int i;
+		 for (i = 0; i < ndec; i++) {
+		     // iterate through each decimal digit for 0..ndec
+		     n -= v;
+		     n *= 10;
+		     v = n;
+		     r += v;
+		 }
+
+		 return r;
+}
+
+``` 
+
+## Thermistor
+
+### Project File
+
+[Project File](./thermistor/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_thermistor('A0') # Set's up the thermistor.
+eb.digital_write_config(13)
+
+
+
+while True:
+  if (eb.thermistor_celsius() > 50):
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+
+  if (eb.thermistor_fahrenheit() > 60):
+    eb.digital_write(13, 1) # Turns the led on
+  else:
+    eb.digital_write(13, 0) # Turns the led off
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+#define THERMISTOR_PIN  A0 // Define analog pin for the thermistor
+#define BETA            3950 // The beta value of the thermistor
+#define RESISTANCE      10000 // The value of the pull-down resistor (in ohms)
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+   pinMode(A0, INPUT); // Configures the thermistor pin as an input
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  if ((readThermistor("C") > 50)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+  if ((readThermistor("F") > 60)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  } else {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+}
+
+float readThermistor(String returnUnit) {
+  // Read the thermistor value from the analog pin
+  long a = analogRead(THERMISTOR_PIN);
+
+  // Calculate the temperature using the thermistor's equation
+  float tempC = BETA / (log((1025.0 * RESISTANCE / a - RESISTANCE) / RESISTANCE) + BETA / 298.0) - 273.0;
+
+  // Convert Celsius to Fahrenheit (optional)
+  float tempF = (tempC * 1.8) + 32.0;
+
+  // Print the Celsius temperature
+  Serial.print("TempC: ");
+  Serial.print(tempC); // Print Celsius temperature
+  Serial.println(" °C"); // Print the unit
+
+  // Print the Fahrenheit temperature (optional)
+  Serial.print("TempF: ");
+  Serial.print(tempF); // Print Fahrenheit temperature
+  Serial.println(" °F"); // Print the unit
+
+  delay(200); // Wait for 200 milliseconds before the next reading
+
+  return returnUnit == "C" ? tempC : tempF; // Return the temperature based on the unit.
+}
+
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
