@@ -1614,7 +1614,8 @@ double ultraSonicDistance() {
 ### Example Pictures
 
 <img width="4032" height="2268" alt="IMG_4580" src="https://github.com/user-attachments/assets/1ad3fb43-6cac-4012-b7c1-30cd2956200b" />
-![IMG_4579](https://github.com/user-attachments/assets/8b129500-7e8e-44cf-a551-6d0937c468b5)
+
+<img width="772" height="567" alt="Screenshot 2026-01-03 at 8 21 35 PM" src="https://github.com/user-attachments/assets/de05259f-c4e5-4c23-8f1b-944a7cf818e3" />
 
 ### Python Code
 
