@@ -2,6 +2,10 @@
 
 This repo lists ElectroBlocks Component Examples in Python and C. Note that most demo videos are played at double speed to reduce video size.
 
+## General Demo 
+
+https://youtu.be/yCtfm9R8Y0o
+
 ## Setup
 
 ```bash
@@ -1243,6 +1247,11 @@ void loop() {
 ### Example Video
 
 
+
+https://github.com/user-attachments/assets/91cb3be0-aac2-458e-a268-631084049dc3
+
+
+
 ### Python Code
 
 ```python
@@ -1310,6 +1319,11 @@ void loop() {
 [Project File](./ir_remote/project.xml)
 
 ### Example Video
+
+
+
+https://github.com/user-attachments/assets/391b9d34-e8f4-447b-b6bd-6d083d71af8d
+
 
 
 ### Python Code
@@ -1413,6 +1427,7 @@ void irRemoteLoopScan() {
 
 ### Example Video
 
+https://github.com/user-attachments/assets/965bab2b-7abd-4e10-aad7-2bf5d6b41990
 
 ### Python Code
 
@@ -1538,6 +1553,9 @@ void setJoyStickValues() {
 ### Example Video
 
 
+https://github.com/user-attachments/assets/876451fc-7546-42d2-959e-1677530d070d
+
+
 ### Python Code
 
 ```python
@@ -1599,6 +1617,9 @@ double ultraSonicDistance() {
 
 ### Example Pictures
 
+<img width="4032" height="2268" alt="IMG_4580" src="https://github.com/user-attachments/assets/1ad3fb43-6cac-4012-b7c1-30cd2956200b" />
+
+<img width="772" height="567" alt="Screenshot 2026-01-03 at 8 21 35 PM" src="https://github.com/user-attachments/assets/de05259f-c4e5-4c23-8f1b-944a7cf818e3" />
 
 ### Python Code
 
@@ -1684,6 +1705,11 @@ void loop() {
 [Project File](./thermistor/project.xml)
 
 ### Example Video
+
+
+
+https://github.com/user-attachments/assets/9ded88bc-96a4-494d-981a-f03036055e3a
+
 
 
 ### Python Code
