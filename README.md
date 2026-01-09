@@ -1773,6 +1773,471 @@ float readThermistor(String returnUnit) {
 
 ```
 
+## Text Parser
+
+### Project File
+
+[Project File](./text/get_parts_of_text/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+# Function Code
+
+def get_parse_value(data: str, separator: str, index: int, default: str = "") -> str:
+    parts = data.split(separator)
+    return parts[index] if 0 <= index < len(parts) else default
+
+
+# Variable Declaration
+i = 0
+
+test = ""
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  for i in range(1, 4, 1):
+    test = (get_parse_value("blue,red,green", ",", max(0, (i) - 1)))
+    print(test)
+    time.sleep(2) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+double i = 0;
+
+String test = "";
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  for (i = 1; i <= 3; i += 1) {
+    test = getParseValue(String("blue,red,green"), ',', i);
+    Serial.println(test);
+    Serial.flush(); // Waits until outgoing buffer is empty
+    delay(2000); // Wait for the given/defined milliseconds.
+
+  }
+}
+
+
+String getParseValue(String data, char separator, int index) {
+	int found = 0;	int strIndex[] = {0, -1};
+	int maxIndex = data.length()-1;
+	for(int i=0; i<=maxIndex && found<=index; i++){
+	    if(data.charAt(i) == separator || i == maxIndex){
+	        found++;
+	        strIndex[0] = strIndex[1]+1;
+	        strIndex[1] = (i == maxIndex) ? i+1 : i;
+	    }
+	}
+	return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
+```
+
+## Add Text
+
+### Project File
+
+[Project File](./lcd/project.xml)
+
+### Example
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+test = ""
+
+local = ""
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  local = "part_one"
+  test = (str(local) + " " + "part_two")
+  print(test)
+  time.sleep(2) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+String test = "";
+
+String local = "";
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  local = String("part_one");
+  test = local + String(" ") + String("part_two");
+  Serial.println(test);
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(2000); // Wait for the given/defined milliseconds.
+}
+
+``` 
+
+## Text Length
+
+### Project File
+
+[Project File](./text/length/project.xml)
+
+### Example
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+sound = ""
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  sound = "moo"
+  if (len("abc") == 3):
+    print("Works")
+    time.sleep(2) # Wait for the given/defined seconds.
+
+  if (len(sound) == 3):
+    print("Works")
+    time.sleep(2) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+String sound = "";
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  sound = String("moo");
+  if ((textLength(String("abc")) == 3)) {
+    Serial.println(String("Works"));
+    Serial.flush(); // Waits until outgoing buffer is empty
+    delay(2000); // Wait for the given/defined milliseconds.
+  }
+  if ((textLength(sound) == 3)) {
+    Serial.println(String("Works"));
+    Serial.flush(); // Waits until outgoing buffer is empty
+    delay(2000); // Wait for the given/defined milliseconds.
+  }
+}
+
+double textLength(String str) {
+	 return (double)str.length();
+}
+
+```
+
+## Upper / Lower Case
+
+### Project File
+
+[Project File](./text/upper_lower_case/project.xml)
+
+### Example 
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+text = ""
+
+lol = ""
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  lol = "aSf"
+  print(("Blah".upper()))
+  print(("Blah".lower()))
+  print((lol.upper()))
+  print((lol.lower()))
+  time.sleep(2) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+String text = "";
+
+String lol = "";
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  lol = String("aSf");
+  Serial.println(upperCaseString(String("Blah")));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println(lowerCaseString(String("Blah")));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println(upperCaseString(lol));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println(lowerCaseString(lol));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(2000); // Wait for the given/defined milliseconds.
+}
+
+
+String upperCaseString(String str) {
+	str.toUpperCase();
+	return str;
+}
+
+
+String lowerCaseString(String str) {
+	str.toLowerCase();
+	return str;
+}
+
+```
+
+## Passive Buzzer
+
+### Project File
+
+[Project File](./text/is_empty/project.xml)
+
+### Examples
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+full = ""
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  full = "abc"
+  if (len("") == 0):
+    print("works")
+    time.sleep(2) # Wait for the given/defined seconds.
+
+  if (len(full) == 0):
+    print("not working")
+    time.sleep(2) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+String full = "";
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  full = String("abc");
+  if ((textLength(String("")) == 0)) {
+    Serial.println(String("works"));
+    Serial.flush(); // Waits until outgoing buffer is empty
+    delay(2000); // Wait for the given/defined milliseconds.
+  }
+  if ((textLength(full) == 0)) {
+    Serial.println(String("not working"));
+    Serial.flush(); // Waits until outgoing buffer is empty
+    delay(2000); // Wait for the given/defined milliseconds.
+  }
+}
+
+double textLength(String str) {
+	 return (double)str.length();
+}
+
+```
+
+## Number to Text
+
+### Project File
+
+[Project File](./text/number_to_text/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+
+# Variable Declaration
+large_num = 0
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  large_num = 4032.3333
+  print(f"{large_num:.2f}")
+  print(f"{123.234234:.3f}")
+  time.sleep(3) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+boolean stopDebugging = false;
+
+double large_num = 0;
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  large_num = 4032.3333;
+  Serial.println((double2string(large_num, 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string(123.234234, 3)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(3000); // Wait for the given/defined milliseconds.
+}
+
+ String double2string(double n, int ndec) {
+		 String r = "";
+		 int v = n;
+		 r += v;     // whole number part
+		 r += '.';   // decimal point
+		 int i;
+		 for (i = 0; i < ndec; i++) {
+		     // iterate through each decimal digit for 0..ndec
+		     n -= v;
+		     n *= 10;
+		     v = n;
+		     r += v;
+		 }
+
+		 return r;
+}
+
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
