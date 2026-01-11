@@ -2617,6 +2617,101 @@ double parseDouble(String num) {
 
 ```
 
+## Passive Buzzer
+
+### Project File
+
+[Project File](./math/round/project.xml)
+
+### Example
+
+<img width="872" height="617" alt="round" src="https://github.com/user-attachments/assets/24bae08d-b7fd-425f-ac03-a9dc8b55a2fe" />
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import math
+import time # imports the time library
+
+
+# Variable Declaration
+num = 0
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  num = 12.5
+  print(f"{round(3.1):.2f}")
+  print(f"{math.ceil(3.1):.2f}")
+  print(f"{math.floor(3.1):.2f}")
+  print(f"{round(num):.2f}")
+  print(f"{math.ceil(num):.2f}")
+  print(f"{math.floor(num):.2f}")
+  time.sleep(10) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+boolean stopDebugging = false;
+
+double num = 0;
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  num = 12.5;
+  Serial.println((double2string(((double)round(3.1)), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string(((double)ceil(3.1)), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string(((double)floor(3.1)), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string(((double)round(num)), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string(((double)ceil(num)), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  Serial.println((double2string(((double)floor(num)), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(10000); // Wait for the given/defined milliseconds.
+}
+
+ String double2string(double n, int ndec) {
+		 String r = "";
+		 int v = n;
+		 r += v;     // whole number part
+		 r += '.';   // decimal point
+		 int i;
+		 for (i = 0; i < ndec; i++) {
+		     // iterate through each decimal digit for 0..ndec
+		     n -= v;
+		     n *= 10;
+		     v = n;
+		     r += v;
+		 }
+
+		 return r;
+}
+
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
