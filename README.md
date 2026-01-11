@@ -2363,7 +2363,7 @@ void loop() {
 
 ```
 
-## Math Arthemitic
+## Math Arithmetic
 
 ### Project File
 
@@ -2371,6 +2371,7 @@ void loop() {
 
 ### Example 
 
+<img width="984" height="866" alt="math_arithmetic" src="https://github.com/user-attachments/assets/2a5fe54e-f24f-4d60-9878-b9b17accc22d" />
 
 ```bash
  arduino 2.00 (12:11:49 PM)
@@ -2516,6 +2517,7 @@ void loop() {
 
 ### Example
 
+<img width="784" height="690" alt="text_to_number" src="https://github.com/user-attachments/assets/297a1ae5-b140-474d-99f9-881b9efb973d" />
 
 ### Python Code
 
