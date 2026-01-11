@@ -2818,6 +2818,7 @@ void loop() {
 
 ### Example
 
+<img width="748" height="476" alt="Screenshot 2026-01-11 at 12 59 53 PM" src="https://github.com/user-attachments/assets/e8b3674e-2b03-4818-8b5f-0031599a0966" />
 
 ### Python Code
 
