@@ -2712,13 +2712,14 @@ void loop() {
 
 ```
 
-## Math Remainder / Randmon
+## Math Remainder / Random
 
 ### Project File
 
 [Project File](./math/random_remainder/project.xml)
 
 ### Example 
+<img width="708" height="646" alt="Screenshot 2026-01-11 at 12 43 49 PM" src="https://github.com/user-attachments/assets/0d81d500-cd77-4de4-a45d-b5f260e5e6af" />
 
 
 ### Python Code
