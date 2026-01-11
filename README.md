@@ -3187,6 +3187,11 @@ void setLedColor(RGB color) {
 [Project File](./variables/project.xml)
 
 ### Example Video
+<img width="1026" height="849" alt="Screenshot 2026-01-11 at 2 53 23 PM" src="https://github.com/user-attachments/assets/faad1814-7917-49a3-8f1a-9b6171356410" />
+
+
+https://github.com/user-attachments/assets/9c7d1847-506b-41fd-9b24-4c41609f9bec
+
 
 
 ### Python Code
