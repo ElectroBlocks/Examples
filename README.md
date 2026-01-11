@@ -1805,8 +1805,9 @@ float readThermistor(String returnUnit) {
 
 [Project File](./text/get_parts_of_text/project.xml)
 
-### Example Video
+### Example 
 
+<img width="786" height="456" alt="Screenshot 2026-01-08 at 8 58 46 PM" src="https://github.com/user-attachments/assets/b9173098-ee35-428f-be44-54d97621bb3b" />
 
 ### Python Code
 
@@ -1889,9 +1890,10 @@ String getParseValue(String data, char separator, int index) {
 
 ### Project File
 
-[Project File](./lcd/project.xml)
+[Project File](./text/add_text/project.xml)
 
 ### Example
+<img width="781" height="361" alt="Screenshot 2026-01-08 at 9 03 21 PM" src="https://github.com/user-attachments/assets/fc860c0b-677b-4fca-b9bd-3b04dea748df" />
 
 
 ### Python Code
@@ -2033,6 +2035,7 @@ double textLength(String str) {
 
 ### Example 
 
+<img width="713" height="623" alt="Screenshot 2026-01-08 at 9 17 12 PM" src="https://github.com/user-attachments/assets/81c93156-80f9-41ee-963c-bb6752da370a" />
 
 ### Python Code
 
@@ -2109,7 +2112,7 @@ String lowerCaseString(String str) {
 
 ```
 
-## Passive Buzzer
+## Is Empty Text
 
 ### Project File
 
@@ -2117,6 +2120,7 @@ String lowerCaseString(String str) {
 
 ### Examples
 
+<img width="769" height="518" alt="Screenshot 2026-01-08 at 9 23 31 PM" src="https://github.com/user-attachments/assets/1b9099a6-b589-475b-b19a-b07fe185f500" />
 
 ### Python Code
 
@@ -2190,8 +2194,9 @@ double textLength(String str) {
 
 [Project File](./text/number_to_text/project.xml)
 
-### Example Video
+### Example
 
+<img width="913" height="453" alt="Screenshot 2026-01-08 at 9 27 14 PM" src="https://github.com/user-attachments/assets/8836c793-e719-4b1b-880f-0edcc6774377" />
 
 ### Python Code
 
@@ -2270,7 +2275,9 @@ void loop() {
 
 [Project File](./math/math_number_property/project.xml)
 
-### Example Video
+### Example 
+
+<img width="641" height="659" alt="number_property" src="https://github.com/user-attachments/assets/eb692374-fbc9-469c-b65b-995cb8117d0e" />
 
 
 ### Python Code
