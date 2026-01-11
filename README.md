@@ -1960,6 +1960,7 @@ void loop() {
 
 ### Example
 
+<img width="658" height="550" alt="Screenshot 2026-01-11 at 12 04 43 PM" src="https://github.com/user-attachments/assets/a35d7702-6f9e-4acc-9291-ce6ee0e64c55" />
 
 ### Python Code
 
