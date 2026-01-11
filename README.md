@@ -2810,6 +2810,79 @@ void loop() {
 
 ```
 
+## Time
+
+### Project File
+
+[Project File](./time/project.xml)
+
+### Example
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+arduino_start_time = time.time() # Start time of the Arduino program
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+
+while True:
+  print(f"{(time.time() - arduino_start_time):.2f}")
+  time.sleep(0.1) # Wait for the given/defined seconds.
+
+```
+### C Code
+
+```c
+String serialMessageDEV = "";
+boolean stopDebugging = false;
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  Serial.println((double2string(secondsArduinoBeenOn(), 2)));
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(100); // Wait for the given/defined milliseconds.
+}
+
+ String double2string(double n, int ndec) {
+		 String r = "";
+		 int v = n;
+		 r += v;     // whole number part
+		 r += '.';   // decimal point
+		 int i;
+		 for (i = 0; i < ndec; i++) {
+		     // iterate through each decimal digit for 0..ndec
+		     n -= v;
+		     n *= 10;
+		     v = n;
+		     r += v;
+		 }
+
+		 return r;
+}
+double secondsArduinoBeenOn() {
+	return millis() / 1000.0;
+}
+
+``` 
+
 <!-- ## Passive Buzzer
 
 ### Project File
