@@ -2882,7 +2882,88 @@ double secondsArduinoBeenOn() {
 	return millis() / 1000.0;
 }
 
-``` 
+```
+
+## My Blocks
+
+### Project File
+
+[Project File](./myblocks/project.xml)
+
+### Example Video
+
+
+
+https://github.com/user-attachments/assets/652bc0e2-71df-4d93-9f7e-14bc18970a85
+
+<img width="729" height="508" alt="Screenshot 2026-01-11 at 1 46 53 PM" src="https://github.com/user-attachments/assets/1018875f-9ac8-454b-a651-93ca02914acb" />
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+# Function Code
+
+def blink():
+  eb.digital_write(13, 1) # Turns the led on
+  time.sleep(0.2) # Wait for the given/defined seconds.
+  eb.digital_write(13, 0) # Turns the led off
+  time.sleep(0.2) # Wait for the given/defined seconds.
+
+
+def print_hi():
+  print("Hi")
+
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.digital_write_config(13)
+
+
+
+while True:
+  print_hi()
+  blink()
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  print_hi();
+  blink();
+}
+
+void blink() {
+  digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  delay(200); // Wait for the given/defined milliseconds.
+  digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  delay(200); // Wait for the given/defined milliseconds.
+}
+void print_hi() {
+  Serial.println(String("Hi"));
+  Serial.flush(); // Waits until outgoing buffer is empty
+}
+
+```
 
 <!-- ## Passive Buzzer
 
