@@ -911,7 +911,7 @@ class RGB:
 
 # Initialise the program settings and configurations
 eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
-eb.config_rgb(11, 10, 9) # Configures the RGB LED pins
+eb.config_rgbled(11, 10, 9) # Configures the RGB LED pins
 
 
 
@@ -2961,6 +2961,93 @@ void blink() {
 void print_hi() {
   Serial.println(String("Hi"));
   Serial.flush(); // Waits until outgoing buffer is empty
+}
+
+```
+
+## Color Blocks
+
+### Project File
+
+[Project File](./color/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+from dataclasses import dataclass
+import random
+import time # imports the time library
+
+
+@dataclass
+class RGB:
+  red: float
+  green: float
+  blue: float
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_rgbled(11, 10, 9) # Configures the RGB LED pins
+
+
+
+while True:
+  dev_color = RGB(random.randint(0, 255), random.randint(0,255), radnom.randit(0,255)) # Create the RGB color object.
+  eb.set_color_rgbled(dev_color.red, dev_color.green, dev_color.blue) # Set the RGB LED color on the Arduino.
+  time.sleep(1) # Wait for the given/defined seconds.
+  dev_color = RGB(100, 0, 100) # Create the RGB color object.
+  eb.set_color_rgbled(dev_color.red, dev_color.green, dev_color.blue) # Set the RGB LED color on the Arduino.
+  time.sleep(1) # Wait for the given/defined seconds.
+  dev_color = RGB(255, 0, 51) # Create the RGB color object.
+  eb.set_color_rgbled(dev_color.red, dev_color.green, dev_color.blue) # Set the RGB LED color on the Arduino.
+  time.sleep(1) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+struct RGB {
+    double red;
+    double green;
+    double blue;
+};
+int BLUE_PIN_1 = 9; // Define pin number for the blue LED
+int RED_PIN_1 = 11; // Define pin number for the red LED
+int GREEN_PIN_1 = 10; // Define pin number for the green LED
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   pinMode(RED_PIN_1, OUTPUT); // Set the red LED pin as an output
+   pinMode(GREEN_PIN_1, OUTPUT); // Set the green LED pin as an output
+   pinMode(BLUE_PIN_1, OUTPUT); // Set the blue LED pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  setLedColor({ random(0, 255), random(0, 255), random(0, 255)}); // Set the RGB LED colour.
+  delay(1000); // Wait for the given/defined milliseconds.
+  setLedColor({ 100, 0, 100}); // Set the RGB LED colour.
+  delay(1000); // Wait for the given/defined milliseconds.
+  setLedColor({ 255, 0, 51}); // Set the RGB LED colour.
+  delay(1000); // Wait for the given/defined milliseconds.
+}
+
+// Set the brightness of each LED based on the RGB color values provided
+void setLedColor(RGB color) {
+    analogWrite(RED_PIN_1, color.red);  // Adjust the red LED brightness
+    analogWrite(GREEN_PIN_1, color.green); // Adjust the green LED brightness
+    analogWrite(BLUE_PIN_1, color.blue); // Adjust the blue LED brightness
 }
 
 ```
