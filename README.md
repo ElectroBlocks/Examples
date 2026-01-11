@@ -3056,6 +3056,256 @@ void setLedColor(RGB color) {
 
 ```
 
+## Variables
+
+### Project File
+
+[Project File](./variables/project.xml)
+
+### Example 
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+from dataclasses import dataclass
+import time # imports the time library
+
+
+@dataclass
+class RGB:
+  red: float
+  green: float
+  blue: float
+
+
+# Variable Declaration
+num = 0
+
+name = ""
+
+awesome = False
+
+deep_blue = RGB(0, 0, 0)
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_rgbled(11, 10, 9) # Configures the RGB LED pins
+eb.digital_write_config(13)
+
+
+
+while True:
+  deep_blue = RGB(0, 89, 255)
+  awesome = True
+  name = "Robo1000"
+  num = 33
+  if (num == 33):
+    eb.digital_write(13, 1) # Turns the led on
+
+  time.sleep(1) # Wait for the given/defined seconds.
+  print(("Hi, " + str(name)))
+  time.sleep(1) # Wait for the given/defined seconds.
+  if awesome:
+    eb.digital_write(13, 0) # Turns the led off
+
+  dev_color = deep_blue # Create the RGB color object.
+  eb.set_color_rgbled(dev_color.red, dev_color.green, dev_color.blue) # Set the RGB LED color on the Arduino.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+struct RGB {
+    double red;
+    double green;
+    double blue;
+};
+int BLUE_PIN_1 = 9; // Define pin number for the blue LED
+int RED_PIN_1 = 11; // Define pin number for the red LED
+int GREEN_PIN_1 = 10; // Define pin number for the green LED
+
+double num = 0;
+
+String name = "";
+
+boolean awesome = false;
+
+struct RGB deep_blue = {0, 0, 0};
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+   pinMode(RED_PIN_1, OUTPUT); // Set the red LED pin as an output
+   pinMode(GREEN_PIN_1, OUTPUT); // Set the green LED pin as an output
+   pinMode(BLUE_PIN_1, OUTPUT); // Set the blue LED pin as an output
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  deep_blue = { 0, 89, 255};
+  awesome = true;
+  name = String("Robo1000");
+  num = 33;
+  if ((num == 33)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  }
+  delay(1000); // Wait for the given/defined milliseconds.
+  Serial.println(String("Hi, ") + name);
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(1000); // Wait for the given/defined milliseconds.
+  if (awesome) {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+  setLedColor(deep_blue); // Set the RGB LED colour.
+}
+
+// Set the brightness of each LED based on the RGB color values provided
+void setLedColor(RGB color) {
+    analogWrite(RED_PIN_1, color.red);  // Adjust the red LED brightness
+    analogWrite(GREEN_PIN_1, color.green); // Adjust the green LED brightness
+    analogWrite(BLUE_PIN_1, color.blue); // Adjust the blue LED brightness
+}
+
+```
+
+## Variables
+
+### Project File
+
+[Project File](./variables/project.xml)
+
+### Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+from dataclasses import dataclass
+import time # imports the time library
+
+
+@dataclass
+class RGB:
+  red: float
+  green: float
+  blue: float
+
+
+# Variable Declaration
+num = 0
+
+name = ""
+
+awesome = False
+
+deep_blue = RGB(0, 0, 0)
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_rgbled(11, 10, 9) # Configures the RGB LED pins
+eb.digital_write_config(13)
+
+
+
+while True:
+  deep_blue = RGB(0, 89, 255)
+  awesome = True
+  name = "Robo1000"
+  num = 33
+  if (num == 33):
+    eb.digital_write(13, 1) # Turns the led on
+
+  time.sleep(1) # Wait for the given/defined seconds.
+  print(("Hi, " + str(name)))
+  time.sleep(1) # Wait for the given/defined seconds.
+  if awesome:
+    eb.digital_write(13, 0) # Turns the led off
+
+  dev_color = deep_blue # Create the RGB color object.
+  eb.set_color_rgbled(dev_color.red, dev_color.green, dev_color.blue) # Set the RGB LED color on the Arduino.
+  time.sleep(1) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+struct RGB {
+    double red;
+    double green;
+    double blue;
+};
+int BLUE_PIN_1 = 9; // Define pin number for the blue LED
+int RED_PIN_1 = 11; // Define pin number for the red LED
+int GREEN_PIN_1 = 10; // Define pin number for the green LED
+
+double num = 0;
+
+String name = "";
+
+boolean awesome = false;
+
+struct RGB deep_blue = {0, 0, 0};
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+   pinMode(RED_PIN_1, OUTPUT); // Set the red LED pin as an output
+   pinMode(GREEN_PIN_1, OUTPUT); // Set the green LED pin as an output
+   pinMode(BLUE_PIN_1, OUTPUT); // Set the blue LED pin as an output
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  deep_blue = { 0, 89, 255};
+  awesome = true;
+  name = String("Robo1000");
+  num = 33;
+  if ((num == 33)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  }
+  delay(1000); // Wait for the given/defined milliseconds.
+  Serial.println(String("Hi, ") + name);
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(1000); // Wait for the given/defined milliseconds.
+  if (awesome) {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+  setLedColor(deep_blue); // Set the RGB LED colour.
+  delay(1000); // Wait for the given/defined milliseconds.
+}
+
+// Set the brightness of each LED based on the RGB color values provided
+void setLedColor(RGB color) {
+    analogWrite(RED_PIN_1, color.red);  // Adjust the red LED brightness
+    analogWrite(GREEN_PIN_1, color.green); // Adjust the green LED brightness
+    analogWrite(BLUE_PIN_1, color.blue); // Adjust the blue LED brightness
+}
+
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
