@@ -3311,6 +3311,520 @@ void setLedColor(RGB color) {
 
 ```
 
+## Simple List
+
+### Project File
+
+[Project File](./list/simple/project.xml)
+
+### Example
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+# Function Code
+
+def set_item_in_list(lst, pos, value, fill=None):
+    """
+    Sets a 1-based position in a list.
+    Grows the list if needed using the fill value.
+    """
+    idx = max(0, int(pos) - 1)
+
+    while idx >= len(lst):
+        lst.append(fill)
+
+    lst[idx] = value
+
+
+def get_item_from_list(lst, pos, default=None):
+    """
+    Gets a 1-based position from a list.
+    Returns default if the position is out of range or the list is empty.
+    """
+    idx = max(0, int(pos) - 1)
+    if 0 <= idx < len(lst):
+        return lst[idx]
+    return default
+
+
+
+# Variable Declaration
+i = 0
+
+j = 0
+
+nums = []
+
+animals = []
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+def setup():
+  for i in range(1, 6, 1):
+    set_item_in_list(nums, i, (i * 2), -1)
+  set_item_in_list(animals, 1, "Fish", "")
+  set_item_in_list(animals, 2, "Cats", "")
+  set_item_in_list(animals, 3, "Mice", "")
+
+
+# Call Setup Function to do what the arduino does. Only gets called once.
+setup()
+
+
+while True:
+  for j in range(1, 4, 1):
+    print(get_item_from_list(animals, j, ""))
+    time.sleep(0.2) # Wait for the given/defined seconds.
+  for j in range(1, 6, 1):
+    print(f"{get_item_from_list(nums, j, -1):.2f}")
+    time.sleep(0.2) # Wait for the given/defined seconds.
+  time.sleep(20) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+String serialMessageDEV = "";
+struct RGB {
+    double red;
+    double green;
+    double blue;
+};
+int BLUE_PIN_1 = 9; // Define pin number for the blue LED
+int RED_PIN_1 = 11; // Define pin number for the red LED
+int GREEN_PIN_1 = 10; // Define pin number for the green LED
+
+double num = 0;
+
+String name = "";
+
+boolean awesome = false;
+
+struct RGB deep_blue = {0, 0, 0};
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+   Serial.begin(115200);
+   Serial.setTimeout(100);
+   pinMode(RED_PIN_1, OUTPUT); // Set the red LED pin as an output
+   pinMode(GREEN_PIN_1, OUTPUT); // Set the green LED pin as an output
+   pinMode(BLUE_PIN_1, OUTPUT); // Set the blue LED pin as an output
+   pinMode(13, OUTPUT);  // Configures led pin as an output
+
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  deep_blue = { 0, 89, 255};
+  awesome = true;
+  name = String("Robo1000");
+  num = 33;
+  if ((num == 33)) {
+    digitalWrite(13, HIGH); // Set defined pin to HIGH (turn it on).
+  }
+  delay(1000); // Wait for the given/defined milliseconds.
+  Serial.println(String("Hi, ") + name);
+  Serial.flush(); // Waits until outgoing buffer is empty
+  delay(1000); // Wait for the given/defined milliseconds.
+  if (awesome) {
+    digitalWrite(13, LOW); // Set defined pin to LOW (turn it off).
+  }
+  setLedColor(deep_blue); // Set the RGB LED colour.
+}
+
+// Set the brightness of each LED based on the RGB color values provided
+void setLedColor(RGB color) {
+    analogWrite(RED_PIN_1, color.red);  // Adjust the red LED brightness
+    analogWrite(GREEN_PIN_1, color.green); // Adjust the green LED brightness
+    analogWrite(BLUE_PIN_1, color.blue); // Adjust the blue LED brightness
+}
+
+```
+
+## Rainbow / Color List
+
+### Project File
+
+[Project File](./list/rainbow/project.xml)
+
+### Example Video Python
+
+
+### Example Video C
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+
+from dataclasses import dataclass
+import time # imports the time library
+
+
+@dataclass
+class RGB:
+  red: float
+  green: float
+  blue: float
+
+# Function Code
+
+def set_item_in_list(lst, pos, value, fill=None):
+    """
+    Sets a 1-based position in a list.
+    Grows the list if needed using the fill value.
+    """
+    idx = max(0, int(pos) - 1)
+
+    while idx >= len(lst):
+        lst.append(fill)
+
+    lst[idx] = value
+
+
+def get_item_from_list(lst, pos, default=None):
+    """
+    Gets a 1-based position from a list.
+    Returns default if the position is out of range or the list is empty.
+    """
+    idx = max(0, int(pos) - 1)
+    if 0 <= idx < len(lst):
+        return lst[idx]
+    return default
+
+
+
+# Variable Declaration
+j = 0
+
+i = 0
+
+k = 0
+
+tempcolor = RGB(0, 0, 0)
+
+colors = []
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+eb.config_rgb_strip("3", 30, "GRB", 10) # Configures the NEOPIXEL strip
+
+
+def setup():
+  tempcolor = RGB(255, 0, 255)
+  for i in range(1, 7, 1):
+    set_item_in_list(colors, i, RGB(255, 0, 72), RGB(0,0,0))
+  for i in range(7, 13, 1):
+    set_item_in_list(colors, i, RGB(255, 255, 0), RGB(0,0,0))
+  for i in range(13, 19, 1):
+    set_item_in_list(colors, i, RGB(0, 255, 30), RGB(0,0,0))
+  for i in range(19, 25, 1):
+    set_item_in_list(colors, i, RGB(0, 72, 255), RGB(0,0,0))
+  for i in range(25, 31, 1):
+    set_item_in_list(colors, i, RGB(255, 0, 191), RGB(0,0,0))
+
+
+# Call Setup Function to do what the arduino does. Only gets called once.
+setup()
+
+
+while True:
+  for j in range(1, 31, 1):
+    developer_temp_color = get_item_from_list(colors, j, RGB(0,0,0)) # create a variable to store the color
+    eb.rgb_strip_set_color(j, developer_temp_color.red, developer_temp_color.green, developer_temp_color.blue)
+  eb.rgb_strip_show_all() # Sets the color the led strip.
+  time.sleep(0.2) # Wait for the given/defined seconds.
+  tempcolor = get_item_from_list(colors, 30, RGB(0,0,0))
+  for k in range(30, 1, -1):
+    set_item_in_list(colors, k, get_item_from_list(colors, (k - 1), RGB(0,0,0)), RGB(0,0,0))
+  set_item_in_list(colors, 0, tempcolor, RGB(0,0,0))
+
+```
+
+### C Code
+
+```c
+struct RGB {
+    double red;
+    double green;
+    double blue;
+};
+
+#include <FastLED.h>  // Includes the FastLED library for controlling LED strips
+#define NUM_LEDS 30 // Defines the number of LEDs in the strip
+#define DATA_PIN 3 // Creates an array to hold the LED colors
+CRGB leds[NUM_LEDS]; // Creates an array to hold the LED colors
+
+
+
+double j = 0;
+
+double i = 0;
+
+double k = 0;
+
+struct RGB tempcolor = {0, 0, 0};
+
+struct RGB colors[30];
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+
+   // Initializes the LED strip
+   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS);
+   // Sets the brightness of the LEDs
+   FastLED.setBrightness(10);
+  tempcolor = { 255, 0, 255};
+  for (i = 1; i <= 6; i += 1) {
+    colors[zeroIndexAdjustNumber(i)] = { 255, 0, 72};
+
+  }
+  for (i = 7; i <= 12; i += 1) {
+    colors[zeroIndexAdjustNumber(i)] = { 255, 255, 0};
+
+  }
+  for (i = 13; i <= 18; i += 1) {
+    colors[zeroIndexAdjustNumber(i)] = { 0, 255, 30};
+
+  }
+  for (i = 19; i <= 24; i += 1) {
+    colors[zeroIndexAdjustNumber(i)] = { 0, 72, 255};
+
+  }
+  for (i = 25; i <= 30; i += 1) {
+    colors[zeroIndexAdjustNumber(i)] = { 255, 0, 191};
+
+  }
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  for (j = 1; j <= 30; j += 1) {
+    setFastLEDColor(j,colors[zeroIndexAdjustNumber(j)]);
+
+  }
+  FastLED.show(); // Sets the color the led strip.
+  delay(200); // Wait for the given/defined milliseconds.
+  tempcolor = colors[zeroIndexAdjustNumber(30)];
+  for (k = 30; k >= 2; k -= 1) {
+    colors[zeroIndexAdjustNumber(k)] = colors[zeroIndexAdjustNumber((k - 1))];
+
+  }
+  colors[zeroIndexAdjustNumber(0)] = tempcolor;
+}
+
+
+// Sets the color of a specific LED at the given position
+void setFastLEDColor(int pos, struct RGB color) {
+    pos = pos <= 0 ? 0 : pos; // Ensures the position is not negative
+    pos = pos >= 1 ? pos - 1 : pos;  // Adjusts position to fit within the array bounds
+    leds[pos].setRGB((int)color.red, (int)color.green, (int)color.blue); // Sets the LED color
+}
+
+
+int zeroIndexAdjustNumber(double pos) {
+	pos = pos <= 0 ? 0 : pos;
+	return pos >= 1 ? pos - 1 : pos;
+}
+
+```
+
+## Led Matrix Bool List
+
+### Project File
+
+[Project File](./list/led_matrix_bools/project.xml)
+
+### Python Example Video
+
+### C Example Video
+
+
+### Python Code
+
+```python
+#Import ElectroBlocks library
+from electroblocks import ElectroBlocks
+import time # imports the time library
+
+# Function Code
+
+def set_item_in_list(lst, pos, value, fill=None):
+    """
+    Sets a 1-based position in a list.
+    Grows the list if needed using the fill value.
+    """
+    idx = max(0, int(pos) - 1)
+
+    while idx >= len(lst):
+        lst.append(fill)
+
+    lst[idx] = value
+
+
+def get_item_from_list(lst, pos, default=None):
+    """
+    Gets a 1-based position from a list.
+    Returns default if the position is out of range or the list is empty.
+    """
+    idx = max(0, int(pos) - 1)
+    if 0 <= idx < len(lst):
+        return lst[idx]
+    return default
+
+
+
+# Variable Declaration
+x = 0
+
+y = 0
+
+leds = []
+
+
+# Initialise the program settings and configurations
+eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
+
+
+eb.config_led_matrix(10,11,12, True)
+def setup():
+  set_item_in_list(leds, 1, True, False)
+  set_item_in_list(leds, 2, True, False)
+  set_item_in_list(leds, 3, True, False)
+  set_item_in_list(leds, 4, False, False)
+  set_item_in_list(leds, 5, False, False)
+  set_item_in_list(leds, 6, False, False)
+  set_item_in_list(leds, 7, True, False)
+  set_item_in_list(leds, 8, True, False)
+
+
+# Call Setup Function to do what the arduino does. Only gets called once.
+setup()
+
+
+while True:
+  for x in range(1, 9, 1):
+    for y in range(1, 11, 1):
+      if get_item_from_list(leds, x, False):
+        eb.set_led_matrix_led(y, x, True)
+      else:
+        eb.set_led_matrix_led(y, x, False)
+
+  time.sleep(3) # Wait for the given/defined seconds.
+  for x in range(1, 9, 1):
+    for y in range(1, 11, 1):
+      if get_item_from_list(leds, y, False):
+        eb.set_led_matrix_led(y, x, True)
+      else:
+        eb.set_led_matrix_led(y, x, False)
+
+  time.sleep(3) # Wait for the given/defined seconds.
+
+```
+
+### C Code
+
+```c
+// This a wrapper library on LedControl that allows us to rotate for breadboards
+#include "LedMatrix.h";
+
+LedMatrix lm(10, 12, 11, LedMatrix::R0, true);
+byte developer_ledmatrix_image[8] = {
+    B00000000,
+    B00000000,
+    B00000000,
+    B00000000,
+    B00000000,
+    B00000000,
+    B00000000,
+    B00000000
+};
+
+double x = 0;
+
+double y = 0;
+
+boolean leds[8];
+
+
+
+// Initialise the program settings and configurations
+void setup() {
+  leds[zeroIndexAdjustNumber(1)] = true;
+  leds[zeroIndexAdjustNumber(2)] = true;
+  leds[zeroIndexAdjustNumber(3)] = true;
+  leds[zeroIndexAdjustNumber(4)] = false;
+  leds[zeroIndexAdjustNumber(5)] = false;
+  leds[zeroIndexAdjustNumber(6)] = false;
+  leds[zeroIndexAdjustNumber(7)] = true;
+  leds[zeroIndexAdjustNumber(8)] = true;
+}
+
+// The void loop function runs over and over again forever.
+void loop() {
+  for (x = 1; x <= 8; x += 1) {
+    for (y = 1; y <= 10; y += 1) {
+      if (leds[zeroIndexAdjustNumber(x)]) {
+
+        lm.setPixel(x, y, true); // change one pixel in the buffer.
+        lm.setImage(); // changes the pixels on the device
+
+      } else {
+
+        lm.setPixel(x, y, false); // change one pixel in the buffer.
+        lm.setImage(); // changes the pixels on the device
+
+      }
+
+    }
+
+  }
+  delay(3000); // Wait for the given/defined milliseconds.
+  for (x = 1; x <= 8; x += 1) {
+    for (y = 1; y <= 10; y += 1) {
+      if (leds[zeroIndexAdjustNumber(y)]) {
+
+        lm.setPixel(x, y, true); // change one pixel in the buffer.
+        lm.setImage(); // changes the pixels on the device
+
+      } else {
+
+        lm.setPixel(x, y, false); // change one pixel in the buffer.
+        lm.setImage(); // changes the pixels on the device
+
+      }
+
+    }
+
+  }
+  delay(3000); // Wait for the given/defined milliseconds.
+}
+
+
+int zeroIndexAdjustNumber(double pos) {
+	pos = pos <= 0 ? 0 : pos;
+	return pos >= 1 ? pos - 1 : pos;
+}
+
+```
+
 <!-- ## Passive Buzzer
 
 ### Project File
