@@ -3319,6 +3319,8 @@ void setLedColor(RGB color) {
 
 ### Example
 
+<img width="1131" height="876" alt="Screenshot 2026-01-11 at 8 23 22 PM" src="https://github.com/user-attachments/assets/3e05ca61-b362-48e8-9f65-a8fc62155160" />
+
 
 ### Python Code
 
@@ -3462,7 +3464,15 @@ void setLedColor(RGB color) {
 ### Example Video Python
 
 
+https://github.com/user-attachments/assets/8db23cbc-7289-4bb3-a8c9-a0d9bc1b2830
+
+
+
 ### Example Video C
+
+
+
+https://github.com/user-attachments/assets/e03c5a7c-5ca7-406b-9fc8-d55aa183ea02
 
 
 ### Python Code
@@ -3654,7 +3664,17 @@ int zeroIndexAdjustNumber(double pos) {
 
 ### Python Example Video
 
+
+
+https://github.com/user-attachments/assets/74d35b53-29d5-4efc-9394-5f188d470685
+
+
+
 ### C Example Video
+
+
+
+https://github.com/user-attachments/assets/0431ae89-c15e-4bef-bbe4-5c9ddebc9e2f
 
 
 ### Python Code
