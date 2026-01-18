@@ -14,7 +14,7 @@ class RGB:
 
 # Initialise the program settings and configurations
 eb = ElectroBlocks() # Create an instance of the ElectroBlocks class
-eb.config_rgb(11, 10, 9) # Configures the RGB LED pins
+eb.config_rgbled(11, 10, 9) # Configures the RGB LED pins
 
 
 
